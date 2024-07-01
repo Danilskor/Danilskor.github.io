@@ -1,9 +1,42 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+#controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: black;
+    gap: 20px;
+    visibility: hidden; /* Изначально кнопки скрыты */
 }
+
+.control-button {
+    width: 7vw; /* Ширина кнопки 7% от ширины окна */
+    height: 7vw; /* Высота кнопки 7% от ширины окна */
+    font-size: 3vw; /* Размер шрифта 3% от ширины окна */
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    text-align: center;
+    line-height: 7vw; /* Высота строки 7% от ширины окна, чтобы текст был по центру */
+    cursor: pointer;
+}
+
+.control-button:active {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+@media (max-width: 768px) {
+    #controls {
+        visibility: visible; /* Показываем кнопки на мобильных устройствах */
+        flex-direction: column; /* Изменяем расположение кнопок на столбик */
+    }
+
+    .control-button {
+        width: 15vw; /* Ширина кнопки 15% от ширины окна */
+        height: 15vw; /* Высота кнопки 15% от ширины окна */
+        font-size: 7vw; /* Размер шрифта 7% от ширины окна */
+        line-height: 15vw; /* Высота строки 15% от ширины окна */
+    }
+}
+

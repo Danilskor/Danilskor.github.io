@@ -1,16 +1,16 @@
 class Rocket {
     constructor() {
-        this.pos = createVector(width / 2, height - 50);
-        this.vel = createVector(0, 0);
-        this.acc = createVector(0, 0);
+        this.position = createVector(width / 2 / scaleFactor, (height - 50) / scaleFactor);
+        this.velocity = createVector(0, 0);
+        this.acceleration = createVector(0, 0);
         this.angle = 0;
     }
 
     applyThrust() {
-        if (this.vel.mag() < maxEngineSpeed || boosterEffectDuration > 0) {
+        if (this.velocity.mag() < maxEngineSpeed || boosterEffectDuration > 0) {
             let force = p5.Vector.fromAngle(this.angle - PI / 2);
             force.mult(thrust);
-            this.acc.add(force);
+            this.acceleration.add(force);
         }
     }
 
@@ -20,22 +20,22 @@ class Rocket {
 
     update() {
         let gravityForce = createVector(0, gravity);
-        this.acc.add(gravityForce);
+        this.acceleration.add(gravityForce);
 
-        this.vel.add(this.acc);
-        this.pos.add(this.vel);
-        this.acc.set(0, 0);
+        this.velocity.add(this.acceleration);
+        this.position.add(this.velocity);
+        this.acceleration.set(0, 0);
 
-        if (this.pos.y > height - 75) {
-            this.pos.y = height - 75;
-            this.vel.y = 0;
-            this.vel.x = 0;
+        if (this.position.y > (height - 50) / scaleFactor) {
+            this.position.y = (height - 50) / scaleFactor;
+            this.velocity.y = 0;
+            this.velocity.x = 0;
         }
     }
 
     display() {
         push();
-        translate(this.pos.x, this.pos.y);
+        translate(this.position.x, this.position.y);
         rotate(this.angle);
         fill(150);
         rectMode(CENTER);
@@ -44,12 +44,12 @@ class Rocket {
     }
 
     hits(obstacle) {
-        let d = dist(this.pos.x, this.pos.y, obstacle.x, obstacle.y);
+        let d = dist(this.position.x, this.position.y, obstacle.x, obstacle.y);
         return d < 25 + obstacle.w / 2;
     }
 
     collects(booster) {
-        let d = dist(this.pos.x, this.pos.y, booster.x, booster.y);
+        let d = dist(this.position.x, this.position.y, booster.x, booster.y);
         return d < 25 + booster.w / 2;
     }
 }

@@ -19,17 +19,19 @@ function generateObstaclesAndBoostersAround(x, y, radius) {
     }
 }
 
+let dificultyScaleThreshold = -5000;
+
 function generateObstaclesInCell(cellX, cellY) {
     let obstaclesInCell = [];
     let baseX = cellX * width;
     let baseY = cellY * height;
-    let numObstacles = 2;
+    let numObstacles = baseY / dificultyScaleThreshold;
 
     for (let i = 0; i < numObstacles; i++) {
         let x = random(baseX, baseX + width);
         let y = random(baseY, baseY + height);
 
-        if (y > height - 100) {
+        if (y > -10000) {
             continue;
         }
 
@@ -44,13 +46,13 @@ function generateBoostersInCell(cellX, cellY) {
     let boostersInCell = [];
     let baseX = cellX * width;
     let baseY = cellY * height;
-    let numBoosters = 1;
+    let numBoosters = 2;
 
     for (let i = 0; i < numBoosters; i++) {
         let x = random(baseX, baseX + width);
         let y = random(baseY, baseY + height);
 
-        if (y > height - 100) {
+        if (y > 0 ) {
             continue;
         }
 
@@ -63,5 +65,5 @@ function generateBoostersInCell(cellX, cellY) {
 
 function drawGround() {
     fill(34, 139, 34);
-    rect(rocket.pos.x - width * 1.5, height - 50, width * 4, 50);
+    rect(rocket.position.x - width, (height - 50) / scaleFactor, width * 4 * scaleFactor, 50);
 }

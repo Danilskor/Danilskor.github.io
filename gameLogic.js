@@ -1,7 +1,7 @@
 function playGame() {
     background(0);
 
-    translate(width / 2 - rocket.pos.x, height / 2 - rocket.pos.y);
+    translate(width / 2 - rocket.position.x, height / 2 - rocket.position.y);
 
     drawGround();
 
@@ -11,16 +11,22 @@ function playGame() {
     rocket.update();
     rocket.display();
 
-    let currentCellX = floor(rocket.pos.x / width);
-    let currentCellY = floor(rocket.pos.y / height);
+    let currentCellX = floor(rocket.position.x / width);
+    let currentCellY = floor(rocket.position.y / height);
 
-    generateObstaclesAndBoostersAround(rocket.pos.x, rocket.pos.y, 3);
+    generateObstaclesAndBoostersAround(rocket.position.x, rocket.position.y, 3);
 
     checkObstaclesCollision();
     checkBoostersCollection();
 
+    updateScore();
     displayHUD();
 }
+
+function updateScore() {
+    score = max(score, floor((height - rocket.position.y) / 10));
+}
+
 
 function handleThrusting() {
     if (thrusting && fuel > 0) {
@@ -42,7 +48,7 @@ function checkObstaclesCollision() {
     for (let obstacle of obstacles) {
         obstacle.display();
         if (rocket.hits(obstacle)) {
-            gameOver();
+            //gameOver();
         }
     }
 }
@@ -63,17 +69,28 @@ function gameOver() {
 
 function displayHUD() {
     fill(255);
-    textSize(24);
+    let fontSize = max(24, 24 / scaleFactor);
+    textSize(fontSize);
     textAlign(LEFT, TOP);
-    text(`Fuel: ${nf(fuel, 0, 2)}`, rocket.pos.x - width / 2 + 10, rocket.pos.y - height / 2 + 40);
-    text(`Global X: ${nf(rocket.pos.x, 0, 2)}`, rocket.pos.x - width / 2 + 10, rocket.pos.y - height / 2 + 70);
-    text(`Global Y: ${nf(rocket.pos.y, 0, 2)}`, rocket.pos.x - width / 2 + 10, rocket.pos.y - height / 2 + 100);
-    text(`Speed: ${nf(rocket.vel.mag(), 0, 2)}`, rocket.pos.x - width / 2 + 10, rocket.pos.y - height / 2 + 130);
+
+    let offsetX = rocket.position.x - width / 2 / scaleFactor + 10 / scaleFactor;
+    let offsetY = rocket.position.y - height / 2 / scaleFactor + 40 / scaleFactor;
+    let lineHeight = fontSize * 1.3; // Высота строки с учетом масштаба
+
+    text(`Fuel: ${nf(fuel, 0, 2)}`, offsetX, offsetY);
+    text(`Speed: ${nf(rocket.velocity.mag(), 0, 2)}`, offsetX, offsetY + lineHeight);
+    text(`Scores: ${score}`, offsetX, offsetY + 2 * lineHeight);
     if (boosterEffectDuration > 0) {
-        text(`Booster Effect: ${nf(boosterEffectDuration, 0, 2)}`, rocket.pos.x - width / 2 + 10, rocket.pos.y - height / 2 + 160);
+        text(`Booster Effect: ${nf(boosterEffectDuration, 0, 2)}`, offsetX, offsetY + 3 * lineHeight);
         boosterEffectDuration -= 0.1;
     }
+
+    text(`Global X: ${nf(rocket.position.x, 0, 2)}`, offsetX, offsetY + 5 * lineHeight);
+    text(`Global Y: ${nf(rocket.position.y, 0, 2)}`, offsetX, offsetY + 4 * lineHeight);
 }
+
+
+
 
 function restartGame() {
     rocket = new Rocket();
@@ -85,5 +102,5 @@ function restartGame() {
     turningLeft = false;
     turningRight = false;
     gameState = 'playing';
-    generateObstaclesAndBoostersAround(rocket.pos.x, rocket.pos.y, 3);
+    generateObstaclesAndBoostersAround(rocket.position.x, rocket.position.y, 3);
 }

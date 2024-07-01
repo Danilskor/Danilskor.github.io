@@ -14,7 +14,7 @@ class Booster {
     }
 
     applyEffect(rocket) {
-        rocket.vel.mult(1.5);
+        rocket.velocity.mult(1.5);
         fuel += 50;
         boosterEffectDuration = 500;
     }
