@@ -31,3 +31,10 @@ function mousePressed() {
         }
     }
 }
+
+document.getElementById('thrust').addEventListener('touchstart', () => { thrusting = true; });
+document.getElementById('thrust').addEventListener('touchend', () => { thrusting = false; });
+document.getElementById('left').addEventListener('touchstart', () => { turningLeft = true; });
+document.getElementById('left').addEventListener('touchend', () => { turningLeft = false; });
+document.getElementById('right').addEventListener('touchstart', () => { turningRight = true; });
+document.getElementById('right').addEventListener('touchend', () => { turningRight = false; });
