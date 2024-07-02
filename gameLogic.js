@@ -48,7 +48,7 @@ function checkObstaclesCollision() {
     for (let obstacle of obstacles) {
         obstacle.display();
         if (rocket.hits(obstacle)) {
-            //gameOver();
+            gameOver();
         }
     }
 }
@@ -96,7 +96,7 @@ function restartGame() {
     rocket = new Rocket();
     obstacles = [];
     boosters = [];
-    fuel = 100;
+    fuel = 500;
     boosterEffectDuration = 0;
     thrusting = false;
     turningLeft = false;
