@@ -69,12 +69,12 @@ function gameOver() {
 
 function displayHUD() {
     fill(255);
-    let fontSize = max(24, 24 / scaleFactor);
+    let fontSize = min(24, 24 / scaleFactor);
     textSize(fontSize);
     textAlign(LEFT, TOP);
 
-    let offsetX = rocket.position.x - width / 2 / scaleFactor + 10 / scaleFactor;
-    let offsetY = rocket.position.y - height / 2 / scaleFactor + 40 / scaleFactor;
+    let offsetX = rocket.position.x - width / 2  + 10 / scaleFactor;
+    let offsetY = rocket.position.y - height / 2  + 40 / scaleFactor;
     let lineHeight = fontSize * 1.3; // Высота строки с учетом масштаба
 
     text(`Fuel: ${nf(fuel, 0, 2)}`, offsetX, offsetY);
