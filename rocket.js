@@ -1,6 +1,6 @@
 class Rocket {
     constructor() {
-        this.position = createVector(width / 2 / scaleFactor, (height - 50) / scaleFactor);
+        this.position = createVector(width / 2 / scaleFactor, 0);
         this.velocity = createVector(0, 0);
         this.acceleration = createVector(0, 0);
         this.angle = 0;
@@ -26,8 +26,8 @@ class Rocket {
         this.position.add(this.velocity);
         this.acceleration.set(0, 0);
 
-        if (this.position.y > (height - 50) / scaleFactor) {
-            this.position.y = (height - 50) / scaleFactor;
+        if (this.position.y > 0) {
+            this.position.y = 0;
             this.velocity.y = 0;
             this.velocity.x = 0;
         }

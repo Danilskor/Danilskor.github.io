@@ -1,5 +1,6 @@
 function playGame() {
     background(0);
+    drawBackground(rocket.position.y);
 
     translate(width / 2 - rocket.position.x, height / 2 - rocket.position.y);
 
@@ -24,7 +25,7 @@ function playGame() {
 }
 
 function updateScore() {
-    score = max(score, floor((height - rocket.position.y) / 10));
+    score = max(score, floor((- rocket.position.y) / 10));
 }
 
 
@@ -48,7 +49,7 @@ function checkObstaclesCollision() {
     for (let obstacle of obstacles) {
         obstacle.display();
         if (rocket.hits(obstacle)) {
-            gameOver();
+            //gameOver();
         }
     }
 }
@@ -57,7 +58,7 @@ function checkBoostersCollection() {
     for (let booster of boosters) {
         booster.display();
         if (rocket.collects(booster)) {
-            booster.applyEffect(rocket);
+            //booster.applyEffect(rocket);
             boosters = boosters.filter(b => b !== booster);
         }
     }
@@ -85,12 +86,9 @@ function displayHUD() {
         boosterEffectDuration -= 0.1;
     }
 
-    // text(`Global X: ${nf(rocket.position.x, 0, 2)}`, offsetX, offsetY + 5 * lineHeight);
-    // text(`Global Y: ${nf(rocket.position.y, 0, 2)}`, offsetX, offsetY + 4 * lineHeight);
+    text(`Global X: ${nf(rocket.position.x, 0, 2)}`, offsetX, offsetY + 5 * lineHeight);
+    text(`Global Y: ${nf(rocket.position.y, 0, 2)}`, offsetX, offsetY + 4 * lineHeight);
 }
-
-
-
 
 function restartGame() {
     rocket = new Rocket();

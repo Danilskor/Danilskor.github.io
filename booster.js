@@ -4,7 +4,7 @@ class Booster {
         this.y = y;
         this.w = w;
         this.h = h;
-        this.color = color(random(0, 255), 255, random(0, 255));
+        this.color = color(0, 255, 0);
     }
 
     display() {

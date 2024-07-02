@@ -3,25 +3,30 @@ let obstacles = [];
 let boosters = [];
 let globalObstacles = new Map();
 let globalBoosters = new Map();
-let fuel = 500;
+let fuel = 5000;
 const gravity = 0.05;
 const thrust = 0.8;
 let thrusting = false;
 let turningLeft = false;
 let turningRight = false;
-const maxEngineSpeed = 10;
+const maxEngineSpeed = 20;
 let boosterEffectDuration = 0;
 let gameState = 'playing';
 let scaleFactor;
 let score = 0;
+let stars = [];
+let clouds = [];
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     scaleFactor = min(windowWidth / 1920, windowHeight / 1080);
     rocket = new Rocket();
-    generateObstaclesAndBoostersAround(rocket.position.x, rocket.position.y, 3);
+    //generateObstaclesAndBoostersAround(rocket.position.x, rocket.position.y, 3);
     setupControls();
-    
+
+    generateStars(1000); // Генерация 1000 звезд при запуске
+    generateClouds(200); // Генерация 200 облаков при запуске
+
     if (isMobileDevice()) {
         document.getElementById('controls').style.visibility = 'visible';
     } else {
