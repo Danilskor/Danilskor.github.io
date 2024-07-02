@@ -65,5 +65,5 @@ function generateBoostersInCell(cellX, cellY) {
 
 function drawGround() {
     fill(34, 139, 34);
-    rect(rocket.position.x - width, (height - 50) / scaleFactor, width * 4 * scaleFactor, 50);
+    rect(rocket.position.x - width, (height - 50) / scaleFactor, width * 4, 50);
 }

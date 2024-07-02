@@ -85,8 +85,8 @@ function displayHUD() {
         boosterEffectDuration -= 0.1;
     }
 
-    text(`Global X: ${nf(rocket.position.x, 0, 2)}`, offsetX, offsetY + 5 * lineHeight);
-    text(`Global Y: ${nf(rocket.position.y, 0, 2)}`, offsetX, offsetY + 4 * lineHeight);
+    // text(`Global X: ${nf(rocket.position.x, 0, 2)}`, offsetX, offsetY + 5 * lineHeight);
+    // text(`Global Y: ${nf(rocket.position.y, 0, 2)}`, offsetX, offsetY + 4 * lineHeight);
 }
 
 

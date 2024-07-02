@@ -29,7 +29,7 @@
 @media (max-width: 768px) {
     #controls {
         visibility: visible; /* Показываем кнопки на мобильных устройствах */
-        flex-direction: column; /* Изменяем расположение кнопок на столбик */
+        flex-direction: row; /* Изменяем расположение кнопок на столбик */
     }
 
     .control-button {

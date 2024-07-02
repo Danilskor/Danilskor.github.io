@@ -63,7 +63,7 @@ function draw() {
 
 function drawMenu() {
     background(0);
-    let fontSize = max(32, 32 * scaleFactor)
+    let fontSize = min(32, 80 * scaleFactor)
     textSize(fontSize);
     fill(255);
     textAlign(CENTER, CENTER);
@@ -73,7 +73,7 @@ function drawMenu() {
     rect(width / 2, height / 2, 180 * scaleFactor, 100* scaleFactor);
     
     fill(0);
-    fontSize = max(20, 20 * scaleFactor)
+    fontSize = min(20, 50 * scaleFactor)
     textSize(fontSize);
     text("Далее", width / 2, height / 2);
 }
