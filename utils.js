@@ -31,7 +31,7 @@ function generateObstaclesInCell(cellX, cellY) {
         let x = random(baseX, baseX + width);
         let y = random(baseY, baseY + height);
 
-        if (y > -10000) {
+        if (y > dificultyScaleThreshold) {
             continue;
         }
 
